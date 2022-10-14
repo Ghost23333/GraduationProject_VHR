@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ch.vhr.mapper.EmployeeremoveMapper" >
+  <resultMap id="BaseResultMap" type="com.ch.vhr.model.Employeeremove" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="eid" property="eid" jdbcType="INTEGER" />
+    <result column="afterDepId" property="afterDepId" jdbcType="INTEGER" />
+    <result column="afterPosId" property="afterPosId" jdbcType="INTEGER" />
+    <result column="beforeDepId" property="beforeDepId" jdbcType="INTEGER" />
+    <result column="beforePosId" property="beforePosId" jdbcType="INTEGER" />
+    <result column="removeDate" property="removeDate" jdbcType="DATE" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="PerMvWithName" type="com.ch.vhr.model.Employeeremove" extends="BaseResultMap">
+    <result column="afterDepName" property="afterDepName" jdbcType="VARCHAR" />
+    <result column="afterPosName" property="afterPosName" jdbcType="VARCHAR" />
+    <result column="beforeDepName" property="beforeDepName" jdbcType="VARCHAR" />
+    <result column="beforePosName" property="beforePosName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, eid, beforePosId,beforeDepId,afterDepId, afterPosId, removeDate, reason, remark
+  </sql>
+  <select id="getAllPerMvByEid" resultMap="BaseResultMap">
+    select er.* from employeeremove er where eid = #{eid}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from employeeremove
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from employeeremove
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ch.vhr.model.Employeeremove" >
+    insert into employeeremove (id, eid, afterDepId, afterPosId,beforeDepId, beforePosId, removeDate, reason, remark)
+    values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{afterDepId,jdbcType=INTEGER}, 
+             #{afterPosId,jdbcType=INTEGER},#{beforeDepId,jdbcType=INTEGER},#{beforePosId,jdbcType=INTEGER}
+         ,#{removeDate,jdbcType=DATE}, #{reason,jdbcType=VARCHAR},  #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ch.vhr.model.Employeeremove" >
+    insert into employeeremove
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="afterDepId != null" >
+        afterDepId,
+      </if>
+      <if test="afterPosId != null" >
+        afterPosId,
+      </if>
+      <if test="beforeDepId != null" >
+        beforeDepId,
+      </if>
+      <if test="beforePosId != null" >
+        beforePosId,
+      </if>
+      <if test="removeDate != null" >
+        removeDate,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="afterDepId != null" >
+        #{afterDepId,jdbcType=INTEGER},
+      </if>
+      <if test="afterPosId != null" >
+        #{afterPosId,jdbcType=INTEGER},
+      </if>
+      <if test="beforeDepId != null" >
+        #{beforeDepId,jdbcType=INTEGER},
+      </if>
+      <if test="beforePosId != null" >
+        #{beforePosId,jdbcType=INTEGER},
+      </if>
+      <if test="removeDate != null" >
+        #{removeDate,jdbcType=DATE},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ch.vhr.model.Employeeremove" >
+    update employeeremove
+    <set >
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="afterDepId != null" >
+        afterDepId = #{afterDepId,jdbcType=INTEGER},
+      </if>
+      <if test="afterPosId != null" >
+        afterPosId = #{afterPosId,jdbcType=INTEGER},
+      </if>
+      <if test="removeDate != null" >
+        removeDate = #{removeDate,jdbcType=DATE},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ch.vhr.model.Employeeremove" >
+    update employeeremove
+    set eid = #{eid,jdbcType=INTEGER},
+      afterDepId = #{afterDepId,jdbcType=INTEGER},
+      afterPosId = #{afterPosId,jdbcType=INTEGER},
+      removeDate = #{removeDate,jdbcType=DATE},
+      reason = #{reason,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>入职欢迎邮件</title>
+    欢迎<span th:text="${name}"></span> 加入【test】公司,您的入职信息如下:
+    <table>
+        <tr>
+            <td>姓名</td>
+            <td th:text="${name}"></td>
+        </tr>
+        <tr>
+            <td>职位</td>
+            <td th:text="${posName}"></td>
+        </tr>
+        <tr>
+            <td>职称</td>
+            <td th:text="${jobLevelName}"></td>
+        </tr>
+        <tr>
+            <td>部门</td>
+            <td th:text="${departmentName}"></td>
+        </tr>
+    </table>
+    <p>fake it until you make it</p>
+</head>
+<body>
+
+</body>
+</html>
